@@ -1,0 +1,11 @@
+[18:18:58][KDC] ==============================================================
+[18:18:58][KDC] KDC mendengar di port 4444 | IP perangkat ini: 172.20.93.6
+[18:18:58][KDC] ==============================================================
+[18:18:58][KDC] master key dikenal untuk: ALICE, BOB
+[18:19:02][KDC] [REG] BOB mendaftar dari 172.20.80.1 -> kanal chat :5556
+[18:19:03][KDC] [REG] ALICE mendaftar dari 172.20.80.1 -> kanal chat :5555
+[18:19:03][KDC] [LANGKAH 1] TERIMA permintaan sesi: ALICE -> BOB (asal paket 172.20.80.1:52446)
+[18:19:03][KDC] [KDC] session key baru: 'mvepkhwqnnRXNRQv' (ASCII 16 char) -- hanya tampil di layar KDC
+[18:19:03][KDC] [KDC] plaintext tiket -> K=mvepkhwqnnRXNRQv|NAME=ALICE|A=172.20.80.1:5555
+[18:19:03][KDC] [KDC] ciphertext tiket (heks) -> c1a39028816f1f8df29405cdf86a842a474549d289b7b756ec9f1e763c8c5648f16ebea6865938bb11cf78f3480927067eb2796022d746b0d770d73a372cc737
+[18:19:03][KDC] [LANGKAH 2] KIRIM ke ALICE 172.20.80.1: REP2|57c89f9ecd786065802e1dfeec726c302eff6a790194b741473681d8c5c91d11592e5763a6b36c055b3d54d01b18d0cb6bc8a03335f836e298e08b784cfdce0a0edfb2c90659acbe34451f6f326522c9ae3cd7feccc3b9e049b92364da45ff0f2f10aad3bd51df29a72edba4e0deb2b08efa826ea73857c348e0131a53c7eb7156e4ecc233b62ddb1bd5fed6ede56d5bbf3c8e46b69906d6c88dd49c237e3943d3e74723446e715372a4d3d8b82b1764 (heks, dienkripsi master key ALICE)

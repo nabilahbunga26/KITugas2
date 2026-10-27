@@ -1,0 +1,17 @@
+[18:19:03][ALICE] ==============================================================
+[18:19:03][ALICE] ALICE siap | peran=ALICE chat_port=5555 ip_lokal=172.20.80.1 | KDC=172.20.93.6:4444 | pasangan=None | session_key=(belum ada) sidik=- | auth=False
+[18:19:03][ALICE] ==============================================================
+[18:19:03][ALICE] [REG] REGOK|ALICE (KDC 172.20.93.6:4444)
+[18:19:03][ALICE] [LANGKAH 2] TERIMA dari KDC 172.20.93.6: REP2|57c89f9ecd786065802e1dfeec726c302eff6a790194b741473681d8c5c91d11592e5763a6b36c055b3d54d01b18d0cb6bc8a03335f836e298e08b784cfdce0a0edfb2c90659acbe34451f6f326522c9ae3cd7feccc3b9e049b92364da45ff0f2f10aad3bd51df29a72edba4e0deb2b08efa826ea73857c348e0131a53c7eb7156e4ecc233b62ddb1bd5fed6ede56d5bbf3c8e46b69906d6c88dd49c237e3943d3e74723446e715372a4d3d8b82b1764 (heks)
+[18:19:03][ALICE] [LANGKAH 2] decrypt master key ALICE -> K=mvepkhwqnnRXNRQv|B=172.20.80.1:5556|TICKET=c1a39028816f1f8df29405cdf86a842a474549d289b7b756ec9f1e763c8c5648f16ebea6865938bb11cf78f3480927067eb2796022d746b0d770d73a372cc737
+[18:19:03][ALICE] [LANGKAH 2] dapat session key 'mvepkhwqnnRXNRQv', tiket 64 byte heks, alamat BOB = 172.20.80.1:5556
+[18:19:03][ALICE] [LANGKAH 3] KIRIM tiket ke BOB 172.20.80.1:5556 -> OK-TICKET
+[18:19:03][ALICE] [LANGKAH 4] TERIMA challenge dari 172.20.80.1: NONCE=542343
+[18:19:03][ALICE] [LANGKAH 5] KIRIM ke BOB: encrypt ASCII 'NONCE=542343|REPLY=542344' -> heks e8f740676de85bd5c87c845225516d33bb842c301f52dc1fbb997f73e2e3cf71
+[18:19:03][ALICE] [SIAP] sesi aktif, key AES dua arah sudah sama. Ketik 'k' untuk kirim pesan.
+[18:19:06][ALICE] [CHAT] ASCII 'halo bob ini alice' -> heks 6b9e02c886f291e62eebfe76d021c43323ffadfc362ad2c30a96891603b58fe8
+[18:19:07][ALICE] [CHAT] BOB -> ALICE: 'halo balik alice' (heks 32 byte)
+[18:19:08][ALICE] [KEY] key chat ALICE diganti -> 'KunciGantiDemo26' (ASCII 16 char)
+[18:19:08][ALICE] [KEY] pasangan bilang: KCONF|BEDA (kalau BEDA, suruh pasangan ganti key yang sama)
+[18:19:09][ALICE] [KEY] pasangan melaporkan sidik 3136 -> key SAMA: True
+[18:19:09][ALICE] [CHAT] ASCII 'pesan setelah ganti key' -> heks 130d3b7a57f09ae7c5fedb1b787dc766bd2e17e3c56b90c93e7efe7b1d8fad53

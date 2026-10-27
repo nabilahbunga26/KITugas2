@@ -1,0 +1,125 @@
+[GLADI] KDC akan dicari di 172.20.93.6:4444 (IP WSL dicek otomatis).
+[GLADI] 1/5 menjalankan KDC di WSL Ubuntu ...
+[GLADI] 2/5 menjalankan Bob (port 5556) ...
+[GLADI] 3/5 menjalankan Alice -> skenario distribusi key 1-5 ...
+[GLADI] 4/5 chat dua arah + ganti key tanpa restart ...
+[GLADI] 5/5 merapikan proses ...
+
+====================================================================================================
+KDC (WSL Ubuntu)
+====================================================================================================
+[18:28:54][KDC] ==============================================================
+[18:28:54][KDC] KDC mendengar di port 4444 | IP perangkat ini: 172.20.93.6
+[18:28:54][KDC] ==============================================================
+[18:28:54][KDC] master key dikenal untuk: ALICE, BOB
+[18:28:59][KDC] [REG] BOB terdaftar di 127.0.0.1:5556 -- sumber alamat: diumumkan sendiri (paket asal 172.20.80.1)
+[18:29:00][KDC] [REG] ALICE terdaftar di 127.0.0.1:5555 -- sumber alamat: diumumkan sendiri (paket asal 172.20.80.1)
+[18:29:00][KDC] [LANGKAH 1] TERIMA permintaan sesi: ALICE -> BOB (asal paket 172.20.80.1:51816)
+[18:29:00][KDC] [KDC] session key baru: 'oaTFwfiaaeUxDCwR' (ASCII 16 char) -- hanya tampil di layar KDC
+[18:29:00][KDC] [KDC] plaintext tiket -> K=oaTFwfiaaeUxDCwR|NAME=ALICE|A=127.0.0.1:5555
+[18:29:00][KDC] [KDC] ciphertext tiket (heks) -> 6095d4338b7297577c6836144718d1fe98e471c3965da748ee8c09a41bc5364a4f319a6fac4df3988caf982bf3419ecc
+[18:29:00][KDC] [LANGKAH 2] KIRIM ke ALICE 127.0.0.1: REP2|7e5a9f4ca747e30b3068a4599dfebb0d61064431097eb2b735203c26830b2daa9874d9acdc314a5b15660df608497cedff9cc5d04a19995fb211f68900e126ab1fe607e2b87d6238542ae7df7e3d4c5eafab643d1657f3f39af0b9ab996514fc85a775e080f11cb34d1de0c1f7e89b2260de12c3a0e5b9c29da626b1e6f0048571c77d2115287bc520843b669ac82d93 (heks, dienkripsi master key ALICE)
+
+====================================================================================================
+ALICE (Windows)
+====================================================================================================
+[18:29:00][ALICE] ==============================================================
+[18:29:00][ALICE] ALICE siap | peran=ALICE chat_port=5555 ip_terdaftar=127.0.0.1 | KDC=172.20.93.6:4444 | pasangan=None | session_key=(belum ada) sidik=- | auth=False
+[18:29:00][ALICE] ==============================================================
+[18:29:00][ALICE] [REG] REGOK|ALICE -> KDC 172.20.93.6:4444, alamat terdaftar 127.0.0.1
+[18:29:00][ALICE] [LANGKAH 2] TERIMA dari KDC 172.20.93.6: REP2|7e5a9f4ca747e30b3068a4599dfebb0d61064431097eb2b735203c26830b2daa9874d9acdc314a5b15660df608497cedff9cc5d04a19995fb211f68900e126ab1fe607e2b87d6238542ae7df7e3d4c5eafab643d1657f3f39af0b9ab996514fc85a775e080f11cb34d1de0c1f7e89b2260de12c3a0e5b9c29da626b1e6f0048571c77d2115287bc520843b669ac82d93 (heks)
+[18:29:00][ALICE] [LANGKAH 2] decrypt master key ALICE -> K=oaTFwfiaaeUxDCwR|B=127.0.0.1:5556|TICKET=6095d4338b7297577c6836144718d1fe98e471c3965da748ee8c09a41bc5364a4f319a6fac4df3988caf982bf3419ecc
+[18:29:00][ALICE] [LANGKAH 2] dapat session key 'oaTFwfiaaeUxDCwR', tiket 48 byte heks, alamat BOB = 127.0.0.1:5556
+[18:29:00][ALICE] [LANGKAH 3] KIRIM tiket ke BOB 127.0.0.1:5556 -> OK-TICKET
+[18:29:00][ALICE] [LANGKAH 4] TERIMA challenge dari 127.0.0.1: NONCE=183323
+[18:29:00][ALICE] [LANGKAH 5] KIRIM ke BOB: encrypt ASCII 'NONCE=183323|REPLY=183324' -> heks f3dc4ad8fb783819063d5bcf168b93926b5df4ff1a2d8d6c07b377294aeaa5c3
+[18:29:00][ALICE] [SIAP] sesi aktif, key AES dua arah sudah sama. Ketik 'k' untuk kirim pesan.
+[18:29:03][ALICE] [CHAT] ASCII 'halo bob ini alice' -> heks 6603fe51c58da8208ab642bce0ccb38137454e46a2660f0c8ef039586073b138
+[18:29:04][ALICE] [CHAT] BOB -> ALICE: 'halo balik alice' (heks 32 byte)
+[18:29:05][ALICE] [KEY] key chat ALICE diganti -> 'KunciGantiDemo26' (ASCII 16 char)
+[18:29:05][ALICE] [KEY] pasangan bilang: KCONF|BEDA (kalau BEDA, suruh pasangan ganti key yang sama)
+[18:29:06][ALICE] [KEY] pasangan melaporkan sidik 3136 -> key SAMA: True
+[18:29:07][ALICE] [CHAT] ASCII 'pesan setelah ganti key' -> heks 130d3b7a57f09ae7c5fedb1b787dc766bd2e17e3c56b90c93e7efe7b1d8fad53
+[18:29:00][ALICE] ==============================================================
+[18:29:00][ALICE] ALICE siap | peran=ALICE chat_port=5555 ip_terdaftar=127.0.0.1 | KDC=172.20.93.6:4444 | pasangan=None | session_key=(belum ada) sidik=- | auth=False
+[18:29:00][ALICE] ==============================================================
+
+perintah:
+  d  jalankan skenario distribusi key (langkah 1-5)
+  k  kirim pesan AES ke pasangan
+  r  tampilkan pesan yang sudah masuk
+  g  ganti key AES (tanpa restart program)
+  u  uji encrypt/decrypt lokal
+  s  status (IP, port, key, auth)
+  q  keluar
+
+alice> [18:29:00][ALICE] [REG] REGOK|ALICE -> KDC 172.20.93.6:4444, alamat terdaftar 127.0.0.1
+[18:29:00][ALICE] [LANGKAH 2] TERIMA dari KDC 172.20.93.6: REP2|7e5a9f4ca747e30b3068a4599dfebb0d61064431097eb2b735203c26830b2daa9874d9acdc314a5b15660df608497cedff9cc5d04a19995fb211f68900e126ab1fe607e2b87d6238542ae7df7e3d4c5eafab643d1657f3f39af0b9ab996514fc85a775e080f11cb34d1de0c1f7e89b2260de12c3a0e5b9c29da626b1e6f0048571c77d2115287bc520843b669ac82d93 (heks)
+[18:29:00][ALICE] [LANGKAH 2] decrypt master key ALICE -> K=oaTFwfiaaeUxDCwR|B=127.0.0.1:5556|TICKET=6095d4338b7297577c6836144718d1fe98e471c3965da748ee8c09a41bc5364a4f319a6fac4df3988caf982bf3419ecc
+[18:29:00][ALICE] [LANGKAH 2] dapat session key 'oaTFwfiaaeUxDCwR', tiket 48 byte heks, alamat BOB = 127.0.0.1:5556
+[18:29:00][ALICE] [LANGKAH 3] KIRIM tiket ke BOB 127.0.0.1:5556 -> OK-TICKET
+[18:29:00][ALICE] [LANGKAH 4] TERIMA challenge dari 127.0.0.1: NONCE=183323
+[18:29:00][ALICE] [LANGKAH 5] KIRIM ke BOB: encrypt ASCII 'NONCE=183323|REPLY=183324' -> heks f3dc4ad8fb783819063d5bcf168b93926b5df4ff1a2d8d6c07b377294aeaa5c3
+[18:29:00][ALICE] [SIAP] sesi aktif, key AES dua arah sudah sama. Ketik 'k' untuk kirim pesan.
+alice> [18:29:03][ALICE] [CHAT] ASCII 'halo bob ini alice' -> heks 6603fe51c58da8208ab642bce0ccb38137454e46a2660f0c8ef039586073b138
+alice> [18:29:04][ALICE] [CHAT] BOB -> ALICE: 'halo balik alice' (heks 32 byte)
+[18:29:05][ALICE] [KEY] key chat ALICE diganti -> 'KunciGantiDemo26' (ASCII 16 char)
+[18:29:05][ALICE] [KEY] pasangan bilang: KCONF|BEDA (kalau BEDA, suruh pasangan ganti key yang sama)
+alice> [18:29:06][ALICE] [KEY] pasangan melaporkan sidik 3136 -> key SAMA: True
+[18:29:07][ALICE] [CHAT] ASCII 'pesan setelah ganti key' -> heks 130d3b7a57f09ae7c5fedb1b787dc766bd2e17e3c56b90c93e7efe7b1d8fad53
+alice>   peran=ALICE chat_port=5555 ip_terdaftar=127.0.0.1 | KDC=172.20.93.6:4444 | pasangan=('BOB', '127.0.0.1', 5556) | session_key='KunciGantiDemo26' sidik=3136 | auth=True
+  inbox: 1 pesan | auth: True
+alice>
+
+====================================================================================================
+BOB (Windows, port 5556)
+====================================================================================================
+[18:28:59][BOB] ==============================================================
+[18:28:59][BOB] BOB siap | peran=BOB chat_port=5556 ip_terdaftar=127.0.0.1 | KDC=172.20.93.6:4444 | pasangan=None | session_key=(belum ada) sidik=- | auth=False
+[18:28:59][BOB] ==============================================================
+[18:28:59][BOB] [REG] REGOK|BOB -> KDC 172.20.93.6:4444, alamat terdaftar 127.0.0.1
+[18:28:59][BOB] [TUNGGU] menunggu tiket dari pasangan di port 5556 ...
+[18:29:00][BOB] [LANGKAH 3] TERIMA tiket dari 127.0.0.1 (heks 48 byte)
+[18:29:00][BOB] [LANGKAH 3] decrypt dengan master key BOB -> K=oaTFwfiaaeUxDCwR|NAME=ALICE|A=127.0.0.1:5555
+[18:29:00][BOB] [LANGKAH 3] dapat session key 'oaTFwfiaaeUxDCwR' + alamat pasangan ('ALICE', '127.0.0.1', 5555)
+[18:29:00][BOB] [LANGKAH 4] KIRIM challenge ke ALICE: encrypt ASCII 'NONCE=183323' -> heks 5b9501b213836039fbf3807d94e4c56b
+[18:29:00][BOB] [LANGKAH 5] TERIMA respons dari 127.0.0.1: NONCE=183323|REPLY=183324 -> challenge cocok: True
+[18:29:00][BOB] [SIAP] kedua sisi memegang session key yang sama. Masuk mode chat AES.
+[18:29:03][BOB] [CHAT] ALICE -> BOB: 'halo bob ini alice' (heks 32 byte)
+[18:29:04][BOB] [CHAT] ASCII 'halo balik alice' -> heks 4351a6318f50a2bb7c9ebbee80b1c8d9ddb3c9478a023ca835c4bdfbec83174e
+[18:29:05][BOB] [KEY] pasangan melaporkan sidik 3136 -> key SAMA: False
+[18:29:06][BOB] [KEY] key chat BOB diganti -> 'KunciGantiDemo26' (ASCII 16 char)
+[18:29:06][BOB] [KEY] pasangan bilang: KCONF|OK (kalau BEDA, suruh pasangan ganti key yang sama)
+[18:29:07][BOB] [CHAT] ALICE -> BOB: 'pesan setelah ganti key' (heks 32 byte)
+[18:28:59][BOB] ==============================================================
+[18:28:59][BOB] BOB siap | peran=BOB chat_port=5556 ip_terdaftar=127.0.0.1 | KDC=172.20.93.6:4444 | pasangan=None | session_key=(belum ada) sidik=- | auth=False
+[18:28:59][BOB] ==============================================================
+
+perintah:
+  d  jalankan skenario distribusi key (langkah 1-5)
+  k  kirim pesan AES ke pasangan
+  r  tampilkan pesan yang sudah masuk
+  g  ganti key AES (tanpa restart program)
+  u  uji encrypt/decrypt lokal
+  s  status (IP, port, key, auth)
+  q  keluar
+
+bob> [18:28:59][BOB] [REG] REGOK|BOB -> KDC 172.20.93.6:4444, alamat terdaftar 127.0.0.1
+[18:28:59][BOB] [TUNGGU] menunggu tiket dari pasangan di port 5556 ...
+[18:29:00][BOB] [LANGKAH 3] TERIMA tiket dari 127.0.0.1 (heks 48 byte)
+[18:29:00][BOB] [LANGKAH 3] decrypt dengan master key BOB -> K=oaTFwfiaaeUxDCwR|NAME=ALICE|A=127.0.0.1:5555
+[18:29:00][BOB] [LANGKAH 3] dapat session key 'oaTFwfiaaeUxDCwR' + alamat pasangan ('ALICE', '127.0.0.1', 5555)
+[18:29:00][BOB] [LANGKAH 4] KIRIM challenge ke ALICE: encrypt ASCII 'NONCE=183323' -> heks 5b9501b213836039fbf3807d94e4c56b
+[18:29:00][BOB] [LANGKAH 5] TERIMA respons dari 127.0.0.1: NONCE=183323|REPLY=183324 -> challenge cocok: True
+[18:29:00][BOB] [SIAP] kedua sisi memegang session key yang sama. Masuk mode chat AES.
+bob> [18:29:03][BOB] [CHAT] ALICE -> BOB: 'halo bob ini alice' (heks 32 byte)
+[18:29:04][BOB] [CHAT] ASCII 'halo balik alice' -> heks 4351a6318f50a2bb7c9ebbee80b1c8d9ddb3c9478a023ca835c4bdfbec83174e
+bob> [18:29:05][BOB] [KEY] pasangan melaporkan sidik 3136 -> key SAMA: False
+[18:29:06][BOB] [KEY] key chat BOB diganti -> 'KunciGantiDemo26' (ASCII 16 char)
+[18:29:06][BOB] [KEY] pasangan bilang: KCONF|OK (kalau BEDA, suruh pasangan ganti key yang sama)
+bob> [18:29:07][BOB] [CHAT] ALICE -> BOB: 'pesan setelah ganti key' (heks 32 byte)
+  peran=BOB chat_port=5556 ip_terdaftar=127.0.0.1 | KDC=172.20.93.6:4444 | pasangan=('ALICE', '127.0.0.1', 5555) | session_key='KunciGantiDemo26' sidik=3136 | auth=True
+  inbox: 2 pesan | auth: True
+bob>
+
+Log tersimpan di: C:\Users\LENOVO\Documents\Qoder\2026-10-27\0aff9277\tugas-keamanan-informasi\captures

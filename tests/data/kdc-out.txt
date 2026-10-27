@@ -1,0 +1,10 @@
+[20:38:41][KDC] ==============================================================
+[20:38:41][KDC] KDC mendengar di port 4444 | IP perangkat ini: 10.198.20.28
+[20:38:41][KDC] ==============================================================
+[20:38:41][KDC] master key dikenal untuk: ALICE, BOB
+
+perintah KDC:
+  s  daftar klien + master key yang dikenal
+  q  keluar
+
+kdc> [20:38:41][KDC] stdin tertutup -- KDC tetap melayani. Ctrl+C untuk berhenti.

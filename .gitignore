@@ -1,0 +1,41 @@
+# kunci demo & config asli tidak di-commit (yang di-commit hanya *.env.example)
+*.env
+!*.env.example
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.log
+
+# artefak VMware: berkas image VM, ISO, installer, snapshot RAM — terlalu besar & tidak perlu
+vm/*.iso
+vm/*.vmem
+vm/*.vmss
+vm/*.vmsn
+vm/*.vmdk
+vm/nvram
+vm/*.scoreboard
+vm/*.vmsd
+vm/*.vmxf
+vm/*.lck/
+vm/vmware*.log
+vm/proyek.zip
+vm/alpine-python3.tgz
+vm/repo/
+vm/Wireshark*.exe
+vm/ip-wsl.txt
+
+# screenshot ini salah tangkap: isinya jendela browser proyek lain (bukan konsol VM Bob)
+captures/vm-konsol.png
+
+# hasil tangkapan & log demo: di-commit sebagai bukti laporan
+# (hapus baris berikut kalau pcap dianggap terlalu besar untuk repo)
+# !captures/*.pcapng
+# !captures/*.log
+
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.code-workspace

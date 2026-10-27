@@ -1,0 +1,11 @@
+[18:07:17][BOB] [REG] REGOK|BOB (KDC 172.20.93.6:4444)
+[18:07:17][BOB] [TUNGGU] menunggu tiket dari pasangan di port 5556 ...
+[18:07:19][BOB] [LANGKAH 3] TERIMA tiket dari 172.20.80.1 (heks 64 byte)
+[18:07:19][BOB] [LANGKAH 3] decrypt dengan master key BOB -> K=KRoou8cciLjtFud1|NAME=ALICE|A=172.20.80.1:5555
+[18:07:19][BOB] [LANGKAH 3] dapat session key 'KRoou8cciLjtFud1' + alamat pasangan ('ALICE', '172.20.80.1', 5555)
+[18:07:19][BOB] [LANGKAH 4] KIRIM challenge ke ALICE: encrypt ASCII 'NONCE=832809' -> heks 5657c4b94a13c972170e169dfad6c46d
+[18:07:19][BOB] [LANGKAH 5] TERIMA respons dari 172.20.80.1: NONCE=832809|REPLY=832810 -> challenge cocok: True
+[18:07:19][BOB] [SIAP] kedua sisi memegang session key yang sama. Masuk mode chat AES.
+[18:07:19][BOB] [CHAT] ALICE -> BOB: 'UJI-DARI-ALICE' (heks 16 byte)
+[18:07:19][BOB] [AUTO] pesan masuk: 'UJI-DARI-ALICE' -> balas
+[18:07:19][BOB] [CHAT] ASCII 'TERIMA-OLEH-BOB' -> heks c5d7e889966400b03dfb9691716e6bd1
